@@ -19,3 +19,19 @@ export const getTodoList = async () => {
     }
   });
 }
+
+export const postTodo = async (todoName) => {
+  try {
+    const data = { "name": todoName };
+    const res = await fetch(BASE_URL + "/todo", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const jsonRes = await res.json();
+    console.log(jsonRes);
+    return jsonRes;
+  } catch (error) {
+    console.error(error);
+  }
+}
