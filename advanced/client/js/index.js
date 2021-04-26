@@ -14,7 +14,7 @@ const main = async () => {
 
   // Fetchして表示
   await appendFetchedTodos(todoList);
-  todoList.showTodoList();
+  todoList.showAllTodoList();
 };
 
 main();

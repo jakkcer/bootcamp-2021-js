@@ -20,7 +20,8 @@ class TodoList {
   }
 
   // Todo一覧を取得してフロントに表示
-  showTodoList() {
+  showAllTodoList() {
+    this.todoListUl.textContent = null;  // 一旦全部削除
     this.todos.map(aTodo => {
       this.todoListUl.appendChild(createTodoLi(aTodo));
     });
