@@ -1,18 +1,20 @@
 import { getTodoList } from "./fetchAPI.js";
-import { createTodoLi } from "./createView.js";
+import TodoList from "./todoList.js";
 
-// Todo一覧を取得してフロントに表示
-const showTodoList = async () => {
-  const todoArray = await getTodoList();
-  const todoListUl = document.getElementById("todoListUl");
-  todoArray.map(aTodo => {
-    todoListUl.appendChild(createTodoLi(aTodo));
+const appendFetchedTodos = async (todoList) => {
+  const fetchedTodos = await getTodoList();
+  fetchedTodos.map(aTodo => {
+    todoList.appendTodo(aTodo.id, aTodo.name, aTodo.done);
   });
 }
 
-const main = () => {
+const main = async () => {
   console.log("ここにロジックを記述");
-  showTodoList();
+  const todoList = new TodoList();
+
+  // Fetchして表示
+  await appendFetchedTodos(todoList);
+  todoList.showTodoList();
 };
 
 main();
