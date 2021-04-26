@@ -4,7 +4,7 @@ import TodoList from "./todoList.js";
 const appendFetchedTodos = async (todoList) => {
   const fetchedTodos = await getTodoList();
   fetchedTodos.map(aTodo => {
-    todoList.appendTodo(aTodo.id, aTodo.name, aTodo.done);
+    todoList.pushAndShowTodo(aTodo.id, aTodo.name, aTodo.done);
   });
 }
 
@@ -17,8 +17,7 @@ const listenAddTodo = (todoList) => {
     e.preventDefault();
     if (newTodoName.value.length > 0) {
       const res = await postTodo(newTodoName.value);
-      todoList.appendTodo(res.id, res.name, res.done);
-      todoList.showAllTodoList();
+      todoList.pushAndShowTodo(res.id, res.name, res.done);
     }
   });
 }
@@ -29,7 +28,6 @@ const main = async () => {
 
   // Fetchして表示
   await appendFetchedTodos(todoList);
-  todoList.showAllTodoList();
 
   listenAddTodo(todoList);
 };

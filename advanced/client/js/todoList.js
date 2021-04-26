@@ -14,13 +14,20 @@ class TodoList {
     this.todoListUl = document.getElementById("todoListUl");
   }
 
-  appendTodo(id, name, done) {
+  pushTodo(id, name, done) {
     const newTodo = new Todo(id, name, done);
     this.todos.push(newTodo);
+    return newTodo;
   }
 
-  // Todo一覧を取得してフロントに表示
-  showAllTodoList() {
+  // Todo1件追加してフロントに表示
+  pushAndShowTodo(id, name, done) {
+    const newTodo = this.pushTodo(id, name, done);
+    this.todoListUl.appendChild(createTodoLi(newTodo));
+  }
+
+  // TodoListの更新
+  refreshTodoList() {
     this.todoListUl.textContent = null;  // 一旦全部削除
     this.todos.map(aTodo => {
       this.todoListUl.appendChild(createTodoLi(aTodo));
